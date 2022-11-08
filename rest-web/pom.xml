@@ -12,6 +12,13 @@
     <packaging>pom</packaging>
     <name>merchant-campaign</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.doordash.merchant.campaign</groupId>
+            <artifactId>merchant-campaign-model</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>${project.name}</finalName>
         <resources>
@@ -25,7 +32,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.doordash.merchant.campaign.MerchantCampaignApplication</mainClass>
+                    <mainClass>com.doordash.merchant.campaign.rest.web.MerchantCampaignApplication</mainClass>
                     <executable>true</executable>
                 </configuration>
             </plugin>
