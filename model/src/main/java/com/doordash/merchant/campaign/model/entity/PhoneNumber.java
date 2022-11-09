@@ -20,7 +20,7 @@ public class PhoneNumber {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String id;
+  private Long id;
 
   @Column(name = DatabaseNames.PHONE_NUMBER, nullable = false, unique = true)
   private String phoneNumber;
