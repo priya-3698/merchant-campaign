@@ -30,5 +30,5 @@ public class PhoneNumber {
   private PhoneNumberType phoneType;
 
   @Column(name = DatabaseNames.OCCURRENCES, nullable = false)
-  private int occurrences;
+  private Integer occurrences;
 }

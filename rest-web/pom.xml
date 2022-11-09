@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.doordash.merchant.campaign</groupId>
         <artifactId>merchant-campaign-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-1-SNAPSHOT</version>
     </parent>
     <artifactId>merchant-campaign-rest-web</artifactId>
     <packaging>jar</packaging>
@@ -17,16 +17,14 @@
             <groupId>com.doordash.merchant.campaign</groupId>
             <artifactId>merchant-campaign-service-impl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.name}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -37,6 +35,12 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>

@@ -10,7 +10,7 @@
 	<groupId>com.doordash.merchant.campaign</groupId>
 	<artifactId>merchant-campaign-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-1-SNAPSHOT</version>
 	<name>merchant-campaign</name>
 
 	<modules>
@@ -30,6 +30,7 @@
 		<lombok.version>1.18.20</lombok.version>
 		<postgresql-version>42.3.5</postgresql-version>
 		<dozer-version>5.5.1</dozer-version>
+		<flyway-maven-version>5.2.4</flyway-maven-version>
 	</properties>
 
 	<dependencyManagement>
@@ -73,6 +74,11 @@
 				<groupId>net.sf.dozer</groupId>
 				<artifactId>dozer</artifactId>
 				<version>${dozer-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<version>${flyway-maven-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
