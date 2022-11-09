@@ -17,4 +17,11 @@
         <finalName>${project.name}</finalName>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.doordash.merchant.campaign</groupId>
+            <artifactId>merchant-campaign-model</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

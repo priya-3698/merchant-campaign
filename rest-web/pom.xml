@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.doordash.merchant.campaign</groupId>
-            <artifactId>merchant-campaign-model</artifactId>
+            <artifactId>merchant-campaign-service-api</artifactId>
         </dependency>
     </dependencies>
 

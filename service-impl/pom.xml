@@ -17,4 +17,14 @@
         <finalName>${project.name}</finalName>
     </build>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.doordash.merchant.campaign</groupId>
+            <artifactId>merchant-campaign-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.doordash.merchant.campaign</groupId>
+            <artifactId>merchant-campaign-dao-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
