@@ -25,23 +25,16 @@ import com.doordash.merchant.campaign.rest.web.properties.SpringDataSourceProper
 @EnableJpaRepositories(basePackages = {"com.doordash.merchant.campaign"})
 public class JPAConfiguration {
 
-//  @Autowired
-//  private SpringDataSourceProperties springDataSourceProperties;
+  @Autowired
+  private SpringDataSourceProperties springDataSourceProperties;
 
   @Bean
   public DataSource dataSource() {
-    Properties properties = new Properties();
-    properties.setProperty("spring.datasource.initial-size", "10");
-    properties.setProperty("spring.datasource.max-active", "40");
-    properties.setProperty("spring.datasource.max-wait", "0");
-    properties.setProperty("spring.datasource.min-idle", "0");
-    properties.setProperty("spring.datasource.max-idle", "20");
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName("org.postgresql.Driver");
-    dataSource.setUrl("jdbc:postgresql://localhost:5432/merchant_campaign");
-    dataSource.setUsername("postgres");
-    dataSource.setPassword("reactions");
-    dataSource.setConnectionProperties(properties);
+    dataSource.setDriverClassName(this.springDataSourceProperties.getDriverClassName());
+    dataSource.setUrl(this.springDataSourceProperties.getUrl());
+    dataSource.setUsername(this.springDataSourceProperties.getUsername());
+    dataSource.setPassword(this.springDataSourceProperties.getPassword());
     return dataSource;
   }
 
@@ -55,12 +48,10 @@ public class JPAConfiguration {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     vendorAdapter.setShowSql(false);
     vendorAdapter.setGenerateDdl(true);
-    vendorAdapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
+    vendorAdapter.setDatabasePlatform(this.springDataSourceProperties.getDialect());
     entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
     entityManagerFactoryBean.setJpaProperties(jpaProperties());
-
     entityManagerFactoryBean.afterPropertiesSet();
-
     return entityManagerFactoryBean.getObject();
   }
 
@@ -75,9 +66,9 @@ public class JPAConfiguration {
 
   Properties jpaProperties() {
     Properties properties = new Properties();
-    properties.setProperty("hibernate.ddl-auto", "create");
-    properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-    properties.setProperty("hibernate.show_sql", "true");
+    properties.setProperty("hibernate.hbm2ddl.auto", this.springDataSourceProperties.getDdlAuto());
+    properties.setProperty("hibernate.dialect", this.springDataSourceProperties.getDialect());
+    properties.setProperty("hibernate.show_sql", this.springDataSourceProperties.getShowSql());
     return properties;
   }
 }

@@ -17,9 +17,4 @@ public class SpringDataSourceProperties {
   private String dialect;
   private String showSql;
   private String ddlAuto;
-  private String minIdle;
-  private String maxIdle;
-  private String initialSize;
-  private String maxActive;
-  private String maxWait;
 }
