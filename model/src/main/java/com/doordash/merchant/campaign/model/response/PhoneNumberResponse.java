@@ -1,4 +1,4 @@
-package com.doordash.merchant.campaign.model.request;
+package com.doordash.merchant.campaign.model.response;
 
 import java.io.Serializable;
 
@@ -17,9 +17,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PersistPhoneNumberRequest implements Serializable {
+public class PhoneNumberResponse implements Serializable {
 
-  private static final long serialVersionUID = 12346062653424861L;
+  private static final long serialVersionUID = 12345662653424861L;
 
-  private String rawPhoneNumbers;
+  private String id;
+  private String phoneNumber;
+  private String phoneType;
+  private String occurrences;
 }

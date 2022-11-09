@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.doordash.merchant.campaign.model.constants.ApiPath;
 
 @RestController
-@RequestMapping
+//@RequestMapping
 public class PhoneNumberController {
 
   @PostMapping(value = ApiPath.INSERT_PHONE_NUMBER, produces = {MediaType.APPLICATION_JSON_VALUE},
