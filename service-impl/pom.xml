@@ -10,8 +10,8 @@
     </parent>
 
     <artifactId>merchant-campaign-service-impl</artifactId>
-    <packaging>pom</packaging>
-    <name>merchant-campaign</name>
+    <packaging>jar</packaging>
+    <name>${project.artifactId}</name>
 
     <build>
         <finalName>${project.name}</finalName>
