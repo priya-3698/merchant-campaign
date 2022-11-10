@@ -24,5 +24,5 @@ public class PhoneNumberResponse implements Serializable {
   private String id;
   private String phoneNumber;
   private String phoneType;
-  private String occurrences;
+  private Integer occurrences;
 }

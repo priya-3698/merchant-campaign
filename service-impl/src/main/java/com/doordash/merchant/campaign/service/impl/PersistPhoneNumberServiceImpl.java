@@ -21,13 +21,13 @@ public class PersistPhoneNumberServiceImpl implements PersistPhoneNumberService 
   public List<PhoneNumber> persistPhoneNumber(String rawPhoneNumber) {
     List<PhoneNumber> phoneNumberList = new ArrayList<>();
 
-    String s = rawPhoneNumber.replaceAll("\\s","");
-    String s1 = s.replaceAll("-","");
+    String s = rawPhoneNumber.replaceAll("\\s|-","");
+//    String s1 = s.replaceAll("-","");
 
-    System.out.println("-------------------------------");
-    System.out.println(s1);
-    System.out.println("-------------------------------");
-    String[] phoneNumbers = s1.split("\\(|\\)");
+//    System.out.println("-------------------------------");
+//    System.out.println(s1);
+//    System.out.println("-------------------------------");
+    String[] phoneNumbers = s.split("\\(|\\)");
 
     for (int i = 1; i < phoneNumbers.length; i = i + 2) {
       PhoneNumberType phoneNumberType = null;
