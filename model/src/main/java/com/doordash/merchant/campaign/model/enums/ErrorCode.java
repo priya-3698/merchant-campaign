@@ -2,7 +2,8 @@ package com.doordash.merchant.campaign.model.enums;
 
 public enum ErrorCode {
 
-  UNSPECIFIED("Sorry, there is an error in our system");
+  UNSPECIFIED("Sorry, there is an error in our system"),
+  INVALID_INPUT("Invalid input data");
 
   private String message;
 

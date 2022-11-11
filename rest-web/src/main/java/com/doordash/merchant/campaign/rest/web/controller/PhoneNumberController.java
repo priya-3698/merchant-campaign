@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.doordash.merchant.campaign.model.constants.ApiPath;
 import com.doordash.merchant.campaign.model.entity.PhoneNumber;
 import com.doordash.merchant.campaign.model.enums.ErrorCode;
+import com.doordash.merchant.campaign.model.exceptions.BusinessException;
 import com.doordash.merchant.campaign.model.request.PersistPhoneNumberRequest;
 import com.doordash.merchant.campaign.model.response.BaseResponseModel;
 import com.doordash.merchant.campaign.model.response.PhoneNumberResponse;
@@ -40,6 +41,9 @@ public class PhoneNumberController {
           .persistPhoneNumber(persistPhoneNumberRequest.getRawPhoneNumbers());
       return new BaseResponseModel<>(
           this.mapper.mapEntityToList(phoneNumberList, PhoneNumberResponse.class));
+    } catch (BusinessException be) {
+      log.error("Error in persisting raw phone number", be);
+      return new BaseResponseModel<>(be.getCode(), be.getMessage());
     } catch (Exception e) {
       log.error("Error in persisting raw phone number", e);
       return new BaseResponseModel<>(ErrorCode.UNSPECIFIED.getCode(), e.getMessage());
