@@ -21,47 +21,34 @@ public class PersistPhoneNumberServiceImpl implements PersistPhoneNumberService 
   @Override
   public List<PhoneNumber> persistPhoneNumber(String rawPhoneNumber) {
     List<PhoneNumber> phoneNumberList = new ArrayList<>();
-
-    int n = rawPhoneNumber.length();
+    int rawNumberLength = rawPhoneNumber.length();
 
     // Navigate to first (
-    int i = 0;
-    while (i < n && rawPhoneNumber.charAt(i) != '(')
-      i++;
+    int curr = 0;
+    while (curr < rawNumberLength && rawPhoneNumber.charAt(curr) != '(')
+      curr++;
 
-    // String s = rawPhoneNumber.replaceAll("\\s|-", "");
-    // String[] phoneNumbers = s.split("\\(|\\)");
-
-    for (i = i + 1; i < n; i++) {
-
+    for (curr = curr + 1; curr < rawNumberLength; curr++) {
       // Get Type
       StringBuilder type = new StringBuilder();
-      while (i < n && rawPhoneNumber.charAt(i) != ')') {
-        type.append(rawPhoneNumber.charAt(i));
-        i++;
+      while (curr < rawNumberLength && rawPhoneNumber.charAt(curr) != ')') {
+        type.append(rawPhoneNumber.charAt(curr));
+        curr++;
       }
-
       // Get Number
       StringBuilder number = new StringBuilder();
-      for (i = i + 1; i < n && rawPhoneNumber.charAt(i) != '('; i++) {
-        char ch = rawPhoneNumber.charAt(i);
+      for (curr = curr + 1; curr < rawNumberLength && rawPhoneNumber.charAt(curr) != '('; curr++) {
+        char ch = rawPhoneNumber.charAt(curr);
         if ((49 <= (int) ch) && ((int) ch <= 57)) {
           number.append(ch);
         }
       }
 
-      if (StringUtils.isBlank(number.toString())) {
-        continue;
-      }
-
       PhoneNumberType phoneNumberType = PhoneNumberType.findByValue(type.toString());
-
-      if (phoneNumberType == null) {
+      if (phoneNumberType == null || StringUtils.isBlank(number.toString())) {
         continue;
       }
 
-      // Have number and type pair by this point. We are fetching from DB to increment or saving it
-      // in the database
       PhoneNumber phoneNumber = this.phoneNumberRepository
           .findByPhoneNumberAndPhoneType(number.toString(), phoneNumberType);
       if (phoneNumber != null) {
@@ -70,9 +57,6 @@ public class PersistPhoneNumberServiceImpl implements PersistPhoneNumberService 
         phoneNumber = PhoneNumber.builder().phoneNumber(number.toString()).occurrences(1)
             .phoneType(phoneNumberType).build();
       }
-
-      // Save the newly created phone number entry or existing phone number entry with updated
-      // occurrence into the DB
       phoneNumberList.add(this.phoneNumberRepository.save(phoneNumber));
     }
 
