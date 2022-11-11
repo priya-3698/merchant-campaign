@@ -14,4 +14,15 @@ public enum PhoneNumberType {
   public String getType() {
     return this.type;
   }
+
+  public static PhoneNumberType findByValue(String value) {
+    PhoneNumberType phoneNumberType = null;
+    for (PhoneNumberType type : values()) {
+      if (type.getType().equalsIgnoreCase(value)) {
+        phoneNumberType = type;
+        break;
+      }
+    }
+    return phoneNumberType;
+  }
 }

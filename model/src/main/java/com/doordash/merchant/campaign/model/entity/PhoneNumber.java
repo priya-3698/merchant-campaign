@@ -33,7 +33,7 @@ public class PhoneNumber implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = DatabaseNames.PHONE_NUMBER, nullable = false, unique = true)
+  @Column(name = DatabaseNames.PHONE_NUMBER, nullable = false)
   private String phoneNumber;
 
   @Column(name = DatabaseNames.PHONE_TYPE, nullable = false)

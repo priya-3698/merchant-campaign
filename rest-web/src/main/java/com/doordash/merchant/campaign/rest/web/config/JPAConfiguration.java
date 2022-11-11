@@ -56,10 +56,10 @@ public class JPAConfiguration {
   }
 
   @Bean
-  public PlatformTransactionManager transactionManager() {
+  public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
     JpaTransactionManager txManager = new JpaTransactionManager();
     txManager.setDataSource(dataSource());
-    txManager.setEntityManagerFactory(entityManagerFactory());
+    txManager.setEntityManagerFactory(emf);
     return txManager;
   }
 
