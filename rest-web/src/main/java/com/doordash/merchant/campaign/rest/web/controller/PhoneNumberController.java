@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.doordash.merchant.campaign.model.constants.ApiPath;
 import com.doordash.merchant.campaign.model.entity.PhoneNumber;
 import com.doordash.merchant.campaign.model.enums.ErrorCode;
-import com.doordash.merchant.campaign.model.exceptions.BusinessException;
 import com.doordash.merchant.campaign.model.request.PersistPhoneNumberRequest;
-import com.doordash.merchant.campaign.model.response.BaseResponseModel;
+import com.doordash.merchant.campaign.model.response.BaseListResponseModel;
 import com.doordash.merchant.campaign.model.response.PhoneNumberResponse;
 import com.doordash.merchant.campaign.service.api.MapperService;
 import com.doordash.merchant.campaign.service.api.PersistPhoneNumberService;
@@ -34,19 +33,17 @@ public class PhoneNumberController {
 
   @PostMapping(value = ApiPath.INSERT_PHONE_NUMBER, produces = {MediaType.APPLICATION_JSON_VALUE},
       consumes = {MediaType.APPLICATION_JSON_VALUE})
-  public BaseResponseModel<PhoneNumberResponse> persistPhoneNumber(
+  public BaseListResponseModel<PhoneNumberResponse> persistPhoneNumber(
       @RequestBody PersistPhoneNumberRequest persistPhoneNumberRequest) {
     try {
+      log.debug("Persist phone number request: {}", persistPhoneNumberRequest);
       List<PhoneNumber> phoneNumberList = this.persistPhoneNumberService
           .persistPhoneNumber(persistPhoneNumberRequest.getRawPhoneNumbers());
-      return new BaseResponseModel<>(
+      return new BaseListResponseModel<>(
           this.mapper.mapEntityToList(phoneNumberList, PhoneNumberResponse.class));
-    } catch (BusinessException be) {
-      log.error("Error in persisting raw phone number", be);
-      return new BaseResponseModel<>(be.getCode(), be.getMessage());
     } catch (Exception e) {
       log.error("Error in persisting raw phone number", e);
-      return new BaseResponseModel<>(ErrorCode.UNSPECIFIED.getCode(), e.getMessage());
+      return new BaseListResponseModel<>(ErrorCode.UNSPECIFIED.getCode(), e.getMessage());
     }
   }
 }

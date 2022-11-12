@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class BaseResponseModel<T> implements Serializable {
+public class BaseListResponseModel<T> implements Serializable {
 
   private static final long serialVersionUID = 12345062653424861L;
 
@@ -15,12 +15,12 @@ public class BaseResponseModel<T> implements Serializable {
   private String errorCode;
   private String errorMessage;
 
-  public BaseResponseModel(List<T> results) {
+  public BaseListResponseModel(List<T> results) {
     this.results = results;
     this.success = true;
   }
 
-  public BaseResponseModel(String errorCode, String errorMessage) {
+  public BaseListResponseModel(String errorCode, String errorMessage) {
     this.success = false;
     this.errorCode = errorCode;
     this.errorMessage = errorMessage;

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = "com.doordash.merchant.campaign")
 public class MerchantCampaignApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MerchantCampaignApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(MerchantCampaignApplication.class, args);
+  }
 }

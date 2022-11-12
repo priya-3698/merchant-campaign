@@ -54,11 +54,11 @@ public class MapperServiceImplTest {
     List<PhoneNumberResponse> phoneNumberResponseList =
         this.mapperService.mapEntityToList(this.phoneNumberList, PhoneNumberResponse.class);
 
-    assertEquals(this.phoneNumberList.size(), phoneNumberResponseList.size());
-    assertEquals(PHONE_NUMBER, phoneNumberResponseList.get(0).getPhoneNumber());
-
     verify(this.mapper, times(this.phoneNumberList.size())).map(any(PhoneNumber.class),
         eq(PhoneNumberResponse.class));
+
+    assertEquals(this.phoneNumberList.size(), phoneNumberResponseList.size());
+    assertEquals(PHONE_NUMBER, phoneNumberResponseList.get(0).getPhoneNumber());
   }
 
   @AfterEach
