@@ -2,6 +2,7 @@ package com.doordash.merchant.campaign.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import com.doordash.merchant.campaign.model.entity.PhoneNumber;
 import com.doordash.merchant.campaign.model.enums.PhoneNumberType;
 import com.doordash.merchant.campaign.service.api.PersistPhoneNumberService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PersistPhoneNumberServiceImpl implements PersistPhoneNumberService {
 
   @Autowired
@@ -31,16 +35,18 @@ public class PersistPhoneNumberServiceImpl implements PersistPhoneNumberService 
     for (String num : phoneNumbers) {
       String[] number = num.split(Constants.CLOSING_BRACKET);
       if (number.length != Constants.TWO) {
+        log.warn("Skipping to persist number: {}", num);
         continue;
       }
       PhoneNumberType phoneNumberType = PhoneNumberType.findByValue(number[Constants.ZERO]);
       String phoneNum = getPhoneNumber(number[Constants.ONE]);
-      if (phoneNumberType == null || StringUtils.isBlank(phoneNum)) {
+      if (!Objects.nonNull(phoneNumberType) || StringUtils.isBlank(phoneNum)) {
+        log.warn("Skipping to persist number: {}", num);
         continue;
       }
       PhoneNumber phoneNumber =
           this.phoneNumberRepository.findByPhoneNumberAndPhoneType(phoneNum, phoneNumberType);
-      if (phoneNumber != null) {
+      if (Objects.nonNull(phoneNumber)) {
         phoneNumber.setOccurrences(phoneNumber.getOccurrences() + Constants.ONE);
       } else {
         phoneNumber = PhoneNumber.builder().phoneNumber(phoneNum).occurrences(Constants.ONE)

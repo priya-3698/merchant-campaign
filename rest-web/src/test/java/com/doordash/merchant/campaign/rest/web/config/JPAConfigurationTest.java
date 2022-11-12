@@ -1,11 +1,13 @@
 package com.doordash.merchant.campaign.rest.web.config;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.junit.jupiter.api.AfterEach;
@@ -48,19 +50,19 @@ public class JPAConfigurationTest {
     verify(this.springDataSourceProperties).getPassword();
     assertNotNull(dataSource);
   }
-  //
-  // @Test
-  // void entityManagerFactoryTest() {
-  // EntityManagerFactory entityManagerFactory = this.jpaConfiguration.entityManagerFactory();
-  // verify(this.springDataSourceProperties).getDriverClassName();
-  // verify(this.springDataSourceProperties).getUrl();
-  // verify(this.springDataSourceProperties).getUsername();
-  // verify(this.springDataSourceProperties).getPassword();
-  // verify(this.springDataSourceProperties, times(2)).getDialect();
-  // verify(this.springDataSourceProperties).getDdlAuto();
-  // verify(this.springDataSourceProperties).getShowSql();
-  // assertNotNull(entityManagerFactory);
-  // }
+
+//   @Test
+//   void entityManagerFactoryTest() {
+//   EntityManagerFactory entityManagerFactory = this.jpaConfiguration.entityManagerFactory();
+//   verify(this.springDataSourceProperties).getDriverClassName();
+//   verify(this.springDataSourceProperties).getUrl();
+//   verify(this.springDataSourceProperties).getUsername();
+//   verify(this.springDataSourceProperties).getPassword();
+//   verify(this.springDataSourceProperties, times(2)).getDialect();
+//   verify(this.springDataSourceProperties).getDdlAuto();
+//   verify(this.springDataSourceProperties).getShowSql();
+//   assertNotNull(entityManagerFactory);
+//   }
 
 
   @Test
