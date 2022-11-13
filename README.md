@@ -21,13 +21,14 @@ brew install maven
 6. Open IntelliJ, and open the `merchant-campaign` directory.
 7. Install postgresql from `https://www.enterprisedb.com/downloads/postgres-postgresql-downloads`
 8. Create database `merchant_campaign` 
-7. Go to application.properties and update the database username and password under `spring.datasource.username` and `spring.datasource.password` respectively.
-8. The database schemas will be created automatically on application initialization using flyway.
-7. Click Intellij IDEA | Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and ensure Enable annotation processing is checked. Click OK to apply the changes.
-8. Click Build -> Rebuild Project and wait for the build to complete successfully.
-9. Open `MerchantCampaignApplication.java` and click `Run`
-10. You should see a log message at the bottom of the console that looks like this:
+9. Go to application.properties and update the database username and password under `spring.datasource.username` and `spring.datasource.password` respectively.
+10. The database schemas will be created automatically on application initialization using flyway.
+11. Install Docker Community Edition: https://docs.docker.com/get-docker/
+12. Click Intellij IDEA | Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and ensure Enable annotation processing is checked. Click OK to apply the changes.
+13. Click Build -> Rebuild Project and wait for the build to complete successfully.
+14. Open `MerchantCampaignApplication.java` and click `Run`
+15. You should see a log message at the bottom of the console that looks like this:
    ```
    2022-11-12 18:28:38.738  INFO 4915 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
    ```
-11. In your browser, navigate to http://localhost:9090/merchant-campaign/health which should return `{"status": "UP"}`. This means the project is running successfully!
+16. In your browser, navigate to http://localhost:9090/merchant-campaign/health which should return `{"status": "UP"}`. This means the project is running successfully!
